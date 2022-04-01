@@ -16,10 +16,10 @@ public class PostRepoImpl {
     static {
         postList = new ArrayList<>();
         postList.add(
-                new Post(1, "post1", "content1", "author1")
+                new Post(1, "post1", "content1", "author1",null)
         );
         postList.add(
-                new Post(2, "post2", "content2", "author2")
+                new Post(2, "post2", "content2", "author2", null)
         );
     }
 
