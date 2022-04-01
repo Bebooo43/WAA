@@ -5,19 +5,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Post {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    String title;
-    String content;
-    String author;
-    @ManyToOne
-    User user;
+    String name;
+    @OneToMany(mappedBy = "user")
+    @JoinColumn(name= "id_user")
+    List<Post> posts;
 }
