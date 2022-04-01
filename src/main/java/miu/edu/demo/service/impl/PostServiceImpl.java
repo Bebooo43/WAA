@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,12 +26,12 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDto> findAll() {
-        return (List<PostDto>) listMapperPost2Dto.mapList(repo.findAll(), new PostDto());
+        return (List<PostDto>) listMapperPost2Dto.mapList((List<Post>) repo.findAll(), new PostDto());
     }
 
     @Override
-    public PostDto getPostById(int id) {
-        return modelMapper.map(repo.getPostById(id), PostDto.class);
+    public PostDto getPostById(long id) {
+        return modelMapper.map(repo.findById(id), PostDto.class);
     }
 
     @Override
@@ -39,17 +40,17 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void delete(int id) {
-        repo.delete(id);
+    public void delete(long id) {
+        repo.deleteById(id);
     }
 
     @Override
     public void update(int id, PostDto pDto) {
-        repo.update(id, modelMapper.map(pDto, Post.class));
+        repo.save(modelMapper.map(pDto, Post.class));
     }
 
     @Override
     public List<PostDto> findAllPostsByAuthor(String author) {
-        return (List<PostDto>) listMapperPost2Dto.mapList(repo.getPostByAuthor(author), new PostDto());
+        return new ArrayList<>();
     }
 }
