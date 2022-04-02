@@ -1,6 +1,7 @@
 package miu.edu.demo.controller;
 
 import miu.edu.demo.domain.PostV2;
+import miu.edu.demo.domain.dto.CommentDto;
 import miu.edu.demo.domain.dto.PostDto;
 import miu.edu.demo.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,11 @@ public class PostController {
     @GetMapping("/")
     public List<PostDto> getAllWithTitle(@RequestParam(value = "title", required = false) String title) {
         return title == null ? service.findAll() : service.findAllPostsByTitle(title);
+    }
+
+    @PostMapping("/{id}/comment")
+    public void addComment(@PathVariable("id") long postId, @RequestBody CommentDto cDto) {
+        service.addComment(postId, cDto);
     }
 
 }

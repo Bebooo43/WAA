@@ -19,7 +19,7 @@ public class Post {
     String title;
     String content;
     String author;
-    @OneToMany(cascade= CascadeType.ALL)
-    @JoinColumn(name= "id_post")
+    @OneToMany(mappedBy = "post", cascade= CascadeType.ALL)
+//    @JoinColumn(name= "id_post")
     List<Comment> comments;
  }
