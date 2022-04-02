@@ -12,5 +12,5 @@ public interface PostService {
     void delete(long id);
     void update(int id, PostDto p);
 
-    List<PostDto> findAllPostsByAuthor(String author);
+    List<PostDto> findAllPostsByTitle(String title);
 }

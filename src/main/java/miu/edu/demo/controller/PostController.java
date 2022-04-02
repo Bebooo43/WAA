@@ -18,7 +18,7 @@ public class PostController {
     PostService service;
 
 
-    @GetMapping("/")
+    @GetMapping
     public List<PostDto> getPosts(){
         return service.findAll();
     }
@@ -53,9 +53,9 @@ public class PostController {
                 .body(new PostV2(111,"title v2", "content v2", "author v2"));
     }
 
-    public List<PostDto> getAll(@RequestParam(value = "author", required = false) String author) {
-        return author == null ? service.findAll() : service.findAllPostsByAuthor(author);
+    @GetMapping("/")
+    public List<PostDto> getAllWithTitle(@RequestParam(value = "title", required = false) String title) {
+        return title == null ? service.findAll() : service.findAllPostsByTitle(title);
     }
-
 
 }

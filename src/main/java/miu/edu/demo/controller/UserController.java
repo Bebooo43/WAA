@@ -1,6 +1,7 @@
 package miu.edu.demo.controller;
 
 import miu.edu.demo.domain.Userr;
+import miu.edu.demo.domain.dto.CommentDto;
 import miu.edu.demo.domain.dto.PostDto;
 import miu.edu.demo.domain.dto.UserDto;
 import miu.edu.demo.service.UserService;
@@ -32,9 +33,31 @@ public class UserController {
 
     @GetMapping("/{id}/posts")
     public ResponseEntity<List<PostDto>> getPostsByUserId(@PathVariable int id) {
-        var post = service.getPostsOfUserById(id);
-        return ResponseEntity.ok(post);
+        var postsList = service.getPostsOfUserById(id);
+        return ResponseEntity.ok(postsList);
     }
+
+    @GetMapping("/{id}/posts/{post_id}")
+    public ResponseEntity<List<CommentDto>> getCommentsByPostIdOfUserId(@PathVariable int id, @PathVariable int post_id) {
+        var comments = service.getCommentsOfPostByIdOfUserById(id, post_id);
+        return ResponseEntity.ok(comments);
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<UserDto>> getUsersWithPostsMoreThan(
+            @RequestParam(value = "postsNum", required = false) int postsNum
+    ) {
+        var users = service.getUsersWithPostsMoreThan(postsNum);
+        return ResponseEntity.ok(users);
+    }
+
+//    @GetMapping("/{id}/posts")
+//    public ResponseEntity<List<UserDto>> getUsersWithPostsMoreThan(
+//            @RequestParam(value = "title", required = false) String title
+//    ) {
+//        var posts = service.getPostsWithTitle(title);
+//        return ResponseEntity.ok(posts);
+//    }
 
     @PostMapping
     public void save(@RequestBody Userr user) {

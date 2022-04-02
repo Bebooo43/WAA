@@ -9,7 +9,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -50,7 +49,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> findAllPostsByAuthor(String author) {
-        return new ArrayList<>();
+    public List<PostDto> findAllPostsByTitle(String title) {
+        return (List<PostDto>) listMapperPost2Dto.mapList(repo.findAllPostsByTitle(title), new PostDto());
     }
 }
