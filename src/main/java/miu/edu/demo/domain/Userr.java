@@ -1,5 +1,6 @@
 package miu.edu.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,5 +20,14 @@ import java.util.List;
     String name;
     @OneToMany(cascade= CascadeType.ALL)
     @JoinColumn(name= "id_user")
+    @JsonManagedReference
     List<Post> posts;
+
+   @OneToMany(mappedBy = "principle", cascade = CascadeType.ALL)
+   @JsonManagedReference
+   List<Logger> logList;
+
+   public  static Userr getLoggedInUser(){
+      return new Userr(1,"logged in",null,null);
+   }
 }
