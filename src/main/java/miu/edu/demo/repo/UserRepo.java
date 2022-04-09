@@ -13,4 +13,6 @@ public interface UserRepo extends CrudRepository<Userr, Long> {
 
     @Query(value = "SELECT u from Userr u where u.posts.size > :postsNum")
     List<Userr> getUsersWithPostsMoreThan(int postsNum);
+
+    Userr findByEmail(String username);
 }

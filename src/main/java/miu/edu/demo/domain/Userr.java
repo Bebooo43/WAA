@@ -18,6 +18,14 @@ import java.util.List;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String name;
+
+    private String email;
+    private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable
+    private List<Role> roles;
+
     @OneToMany(cascade= CascadeType.ALL)
     @JoinColumn(name= "id_user")
     @JsonManagedReference
@@ -28,6 +36,6 @@ import java.util.List;
    List<Logger> logList;
 
    public  static Userr getLoggedInUser(){
-      return new Userr(1,"logged in",null,null);
+      return new Userr(1,"logged in", "asd@madf.asd", "asdasdf", null,null,null);
    }
 }
