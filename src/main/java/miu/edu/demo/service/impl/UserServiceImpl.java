@@ -67,6 +67,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Userr findByUserName(String username) {
+        return userRepo.findUserByUserName(username);
+    }
+
+    @Override
     public List<CommentDto> getCommentsOfPostByIdOfUserById(long userId, long postId) {
         var commentsList = userRepo.findById(userId).get()
                 .getPosts().stream()

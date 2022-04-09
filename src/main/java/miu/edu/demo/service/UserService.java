@@ -19,4 +19,6 @@ public interface UserService {
 
     List<UserDto> getUsersWithPostsMoreThan(int postsNum);
 
+    Userr findByUserName(String username);
+
 }
